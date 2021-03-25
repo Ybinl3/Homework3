@@ -26,9 +26,9 @@ public class MusicPlayer{
     private MusicService musicService;
 
     static final int[] MUSICPATH = new int[]{
-        R.raw.gotechgo,
-        R.raw.hokiefight,
-        R.raw.entersandman
+            R.raw.gotechgo,
+            R.raw.hokiefight,
+            R.raw.entersandman
     };
     static final int[] BGPATH = new int[]{
             R.raw.clapping,
@@ -112,6 +112,7 @@ public class MusicPlayer{
             public void onCompletion(MediaPlayer mp) {
                 player3.release();
                 player3 = null;
+                musicService.onUpdateMusicName(getMusicName(), musicIndex);
             }
 
         });
@@ -132,6 +133,7 @@ public class MusicPlayer{
             public void onCompletion(MediaPlayer mp) {
                 player4.release();
                 player4 = null;
+                musicService.onUpdateMusicName(getMusicName(), musicIndex);
             }
 
         });
@@ -144,21 +146,21 @@ public class MusicPlayer{
 
     }
     public void resumeBGMusic(){
-        if(player2 != null){
+        if(player2 != null && bgStatus == 2){
             player2.seekTo(currentBGPosition);
             player2.start();
             bgStatus=1;
         }
     }
     public void resume2BGMusic(){
-        if(player3 != null){
+        if(player3 != null && bgStatus == 2){
             player3.seekTo(currentBG2Position);
             player3.start();
             bg2Status=1;
         }
     }
     public void resume3BGMusic(){
-        if(player4 != null){
+        if(player4 != null && bgStatus == 2){
             player4.seekTo(currentBG3Position);
             player4.start();
             bg3Status=1;
@@ -196,7 +198,6 @@ public class MusicPlayer{
             bg3Status = 2;
         }
     }
-
     */
     public void resumeMusic(){
         if(player != null){
